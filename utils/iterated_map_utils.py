@@ -1,40 +1,39 @@
 import numpy as np
 from typing import Callable
 
-def logistic_map(P: dict, data: np.ndarray) -> np.ndarray:
+
+def iterate(func: Callable, data: np.array, n: int = 0, **kwargs) -> np.array:
+
+    if not isinstance(data, np.ndarray):
+        return iterate(func, np.array(data), n, **kwargs)
+    else:    
+        trajectory = [data]
+        for t in range(1,n):
+            trajectory.append(func(trajectory[-1], **kwargs))
+        return np.array(trajectory)
+
+
+def logistic_map(data: np.ndarray, r=3.0) -> np.ndarray:
     """The implementation of a relative population system with:
-    -  parameters `P`: ['r'] and,
     -  variables `data`,
+    -  r: reproduction parameter
     that maps to the output `data_hat` of the same type as variable `data`
     """
-    r = P['r']  # reproduction rate
+    
     x = data    # relative population size
-
+    
     return r * x * (1 - x)
 
 
-def gauss_map(P: dict, data: np.ndarray) -> np.ndarray:
+def gauss_map(data: np.ndarray, alpha=6.2, beta=-0.5) -> np.ndarray:
     """Named after Johann Carl Friedrich Gauss, the function maps the bell shaped Gaussian function similar to the logistic map.
-    -  parameters `P`: ['alpha', 'beta'] and,
     -  variables `data`,
+    -  parameter alpha
+    -  parmeter beta
     that maps to the output `data_hat` of the same type as variable `data`
     """
-    alpha = P['alpha']  # 
-    beta = P['beta']  # 
-    x = data    # 
+    
+    x = data
 
     return np.exp(-alpha * x**2) + beta
     
-
-def iterate(map: Callable, P: dict, data: np.array, n: int = 0) -> np.array:
-
-    if not isinstance(data, np.ndarray):
-        return iterate(map, P, np.array(data), n)
-    else:    
-        new_shape = (n,) + data.shape
-        trajectory = np.empty(shape=new_shape, dtype=data.dtype)
-
-        trajectory[0] = data
-        for i in range(1,n):
-            trajectory[i] = map(P, trajectory[i-1])
-        return trajectory
