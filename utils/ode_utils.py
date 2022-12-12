@@ -37,14 +37,14 @@ def rk4(func, data, t, dt=0.01, **kwargs):
     return data + (dt / 6) * (f1 + (2 * f2) + (2 * f3) + f4)
 
 
-def lorentz_ode(data: np.ndarray, t, sigma=10., beta=8./3., rho=28.) -> np.ndarray:
+def lorentz_ode(data: np.ndarray, t=1, sigma=10., beta=8./3., rho=28.) -> np.ndarray:
     '''
     sigma: constant related to Prandtl number
     beta: geometric physical property of fluid layer
     rho: constant related to the Rayleigh number
     '''
 
-    x, y, z = data
+    x, y, z = tuple(data)
 
     dx_dt = sigma * (y - x)
     dy_dt = x * (rho - z) - y
