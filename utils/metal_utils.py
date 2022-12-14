@@ -15,17 +15,6 @@ config_defaults = SimpleNamespace(
     learning_rate=1e-3,
 )
 
-def to_device(batch, device="cpu"):
-    "Move tensors to device"
-    if isinstance(batch, torch.Tensor):
-        batch.to(device)
-    elif isinstance(batch, dict):
-        for k,v in batch.items():
-            batch[k] = v.to(device)
-    else:
-        raise Exception(f"Can't put your batch of type {type(batch)} into device: {device}")
-    return batch
-
 
 @dataclass
 class MicroTrainer:
