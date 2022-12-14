@@ -12,6 +12,7 @@ def iterate(func: Callable, V: np.array, n: int = 0, **kwargs) -> np.array:
             trajectory.append(func(trajectory[-1], **kwargs))
         return np.array(trajectory)
 
+
 def logistic_map(V: np.ndarray, r=3.0) -> np.ndarray:
     """The implementation of a relative population system with:
     -  input variable vector `V`,
