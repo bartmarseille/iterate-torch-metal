@@ -34,16 +34,6 @@ def get_device():
     print(f'pytorch using device: {device}')
     return device
 
-def to_device(batch, device="cpu"):
-    "Move tensors to device"
-    if isinstance(batch, torch.Tensor):
-        batch.to(device)
-    elif isinstance(batch, dict):
-        for k,v in batch.items():
-            batch[k] = v.to(device)
-    else:
-        raise Exception(f"Can't put your batch of type {type(batch)} into device: {device}")
-    return batch
 
 def reset_seed(seed):
     torch.manual_seed(seed)
