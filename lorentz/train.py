@@ -9,8 +9,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from test import test
-
 from tqdm import tqdm
 import wandb
 import yaml
@@ -19,6 +17,7 @@ from types import SimpleNamespace
 import sys
 sys.path.append('..')
 
+from lorentz.test import test
 import utils.ode_utils as ode_utils
 import utils.torch_utils as torch_utils
 
