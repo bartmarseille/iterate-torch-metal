@@ -1,0 +1,37 @@
+# wand project
+project: best01-100
+
+# reproducability
+seed: 33
+
+# model
+model_name: RecurrenceModel
+hidden_units_list:
+- 3
+- 8
+- 3
+activation_function: elu
+
+# train regime
+batch_size: 64
+epochs: 5
+
+# learning regime
+optimizer: Adam
+learning_rate: 0.039664168055541175
+weight_decay: 0.032460871071459375
+loss_function: RMSE
+
+# train dataset
+dataset_distribution: np.random.normal
+dataset_parameters: { 'x': { 'mu': 0, 'sigma': 30}, 'y': { 'mu': 0, 'sigma': 30}, 'z': { 'mu': 25, 'sigma': 25}}
+dataset_size: 6000
+
+# mapping
+map_name: lorentz_ode
+map_parameters: {'sigma': 10, 'beta': 2.6666667, 'rho': 28, 'dt': 0.01}  # 8/3=2.6666667
+
+# device 
+device: mps
+dtype: float32
+gpu_name: M1Pro GPU 16 Cores
