@@ -40,7 +40,7 @@ def rk4(func, V, t, dt=0.01, **kwargs):
     return V + (dt / 6) * (f1 + (2 * f2) + (2 * f3) + f4)
 
 
-def lorentz_ode(V: np.ndarray, t=1, sigma=10., beta=8./3., rho=28.) -> np.ndarray:
+def lorentz_ode(V: np.ndarray, t=1, sigma=10., beta=8./3., rho=28., **kwargs) -> np.ndarray:
     '''
     V: current state vector [y1, y2, y3, ...]
     sigma: constant related to Prandtl number
