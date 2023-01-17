@@ -22,4 +22,5 @@ var/
 
 base.ipynb
 
+.idea/
 wandb/
